@@ -134,14 +134,14 @@ def crear_pagina_prediccion():
             horas = st.number_input(
                 "Horas de la muerte",
                 min_value=0,
-                max_value=1000,
-                value=24
+                max_value=23,
+                value=12
             )
             
             peso = st.number_input(
                 "Peso (kg)",
-                min_value=0.0,
-                max_value=200.0,
+                min_value=0,
+                max_value=80,
                 value=70.0
             )
             

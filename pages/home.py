@@ -147,7 +147,15 @@ df = load_data()
 st.sidebar.header("Filters")
 
 # Obtener lista única de causas de muerte
-causes = sorted(df["lista_mex"].dropna().unique())
+causes = [
+    'Neumonía',
+    'Enfermedades pulmonares obstructivas crónicas',
+    'Infarto agudo del miocardio',
+    'Diabetes mellitus',
+    'Otras enfermedades del hígado',
+    'Agresiones (homicidios)',
+    'Todas las causas de muerte'  # This is the new entry for "all dead causes"
+]
 
 # Selector de causa de muerte
 selected_cause = st.sidebar.selectbox(
@@ -155,8 +163,15 @@ selected_cause = st.sidebar.selectbox(
     causes
 )
 
-# Filtrar datos según la causa seleccionada
 df_filtered = df[df["lista_mex"] == selected_cause]
+
+# With this:
+if selected_cause == 'Todas las causas de muerte':
+    df_filtered = df  # Use all data without filtering by cause
+else:
+    df_filtered = df[df["lista_mex"] == selected_cause]
+
+# The rest of the code remains the same
 df_deaths = df_filtered["ent_ocurr"].value_counts().reset_index()
 df_deaths.columns = ['ent_mat', 'count(1)']
 
