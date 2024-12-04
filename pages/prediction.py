@@ -142,7 +142,7 @@ def crear_pagina_prediccion():
                 "Peso (kg)",
                 min_value=0,
                 max_value=80,
-                value=70.0
+                value=70
             )
             
             covid_influenza = st.selectbox(
